@@ -50,6 +50,10 @@ public class Quicksort {
      // return  1 if v >  w
    // return  0 if v == w
      // return -1 if v <  w
+    // private static boolean less(Comparable v, Comparable w){  
+   //  if (v == w) return false;   // optimization when reference equals
+   //      return v.compareTo(w) < 0;
+    //}
    private static boolean less(int v, int w){  
     
         if(v < w){
