@@ -45,7 +45,13 @@ public class SeparateChainingHashST<Key, Value> {
     private int hashTextbook(Key key) {
         return(key.hashCode() & 0x7fffffff) % m;
     }
-   
+    
+    //(>>>) it is a unsigned operator 
+    private int hash(Key key){
+        int h = key.hashCode();
+        h ^= (h >>> 20) ^ (h >>> 12) ^ (h >>> 7) ^ (h >>> 4);
+        return h & (m-1);
+   }
  
     /**
      * Returns the number of key-value pairs in this symbol table.
@@ -126,12 +132,9 @@ public class SeparateChainingHashST<Key, Value> {
         int i = hash(key);
         if (!st[i].contains(key)) n++;
         st[i].put(key, val);
-    } 
-      private int hash(Key key){
-        int h = key.hashCode();
-        h ^= (h >>> 20) ^ (h >>> 12) ^ (h >>> 7) ^ (h >>> 4);
-        return h & (m-1);
-   }
+    }
+
+   
 
 
     /**
